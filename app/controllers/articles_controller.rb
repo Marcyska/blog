@@ -17,7 +17,7 @@ before_action :find_article, only: [:show, :edit, :update, :destroy]
     end
   end
   def show
-    @comment = Comment.new
+    @comment = Comment.new(commenter: session[:commenter])
 
   end
   def edit
