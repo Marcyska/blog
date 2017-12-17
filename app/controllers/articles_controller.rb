@@ -1,14 +1,17 @@
 class ArticlesController < ApplicationController
   before_action :find_article, only: [:show, :edit, :update, :destroy]
   before_action :authorize_article, only: [:edit, :update, :destroy]
+  
   def index
-    @articles = Article.all.order(created_at: :desc)
+    @articles = Article.includes(:author).order(created_at: :desc)
     if params[:q].present?
       @articles = @articles.select do |article|
         article.tags.include?(params[:q])
       end
     end
   end
+  
+
   def new
     @article = Article.new
   end
@@ -22,7 +25,8 @@ class ArticlesController < ApplicationController
     end
   end
   def show
-    @comment = Comment.new(commenter: session[:commenter])
+    @comment = Comment.new
+    @like = Like.find_or_initialize_by(article: @article, user: current_user)
   end
   def edit
     
