@@ -1,5 +1,5 @@
-<h1>
-	Article
+<h1><p style="color: green">
+	Article</p>
 </h1>
 <p>
 	<strong>Title:</strong>
@@ -23,7 +23,7 @@
 <% end %>
 
 
-<h2>Comments</h2>
+<h3><p style="color: blue">Comments</p></h3>
 
 <% @article.comments.each do |comment| %>
 <%= render 'comments/comment', comment: comment %>
