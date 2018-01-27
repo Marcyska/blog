@@ -1,4 +1,8 @@
 class ArticlePolicy < ApplicationPolicy
+	def permitted_attributes
+		[:title, :text, :tags]
+
+
 def update?
 record.author == user
 end

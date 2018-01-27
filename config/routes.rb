@@ -12,6 +12,9 @@ Rails.application.routes.draw do
   # patch 'articles/:id', to: 'articles#update'
   # delete 'articles/:id', to: 'articles#destroy'
   resources :articles do
+    member do
+      get :summary
+    end
     resources :comments, only: [:create, :destroy]
     resources :likes, only: [:create, :destroy]
   end
